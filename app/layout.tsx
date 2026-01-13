@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Wallet } from "lucide-react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +30,32 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <ToastContainer
+          position="bottom-right"
+          autoClose={1000}
+          hideProgressBar={true}
+          closeOnClick
+          pauseOnHover
+        />
+        <nav className="text-white bg-black font-mono">
+        <div className="flex justify-between bg-mint-500">
+          <div className='flex p-4 space-x-4 items-center'>
+            <Wallet size={50} className="" />
+            <span className='text-4xl'>BlockSafe</span>
+          </div>
+          <div className='flex p-4 space-x-2 items-center'>
+            {/* <input  className="scale-150" type='checkbox'></input>
+            <label className='text-2xl'>Dark mode</label> */}
+            {/* <Switch></Switch> */}
+              {/* <p>Hi there </p> */}
+          </div>
+        </div>
+      </nav>
+      
         {children}
+        <footer className='mt-auto py-3 px-10'>
+          <div className='font-mono text-2xs'> Developed by Baltej Singh</div>
+        </footer>
       </body>
     </html>
   );
