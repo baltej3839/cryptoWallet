@@ -16,8 +16,8 @@ export const convertMnemonicToSeedBuffer = (mnemonic:string[]) => {
 }
 
 
-export const createNewSeed = (i:number, seed:Buffer) => {
-  const path = `m/44'/501'/${i}'/0'`; 
+export const createNewSeed = (i:number, seed:Buffer, blockchainSelected:string | null) => {
+  const path = blockchainSelected==="Solana" ? `m/44'/501'/${i}'/0'` : `m/44'/60'/${i}'/0'`;
   const derivedSeed = derivePath(path, seed.toString("hex")).key;
   const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey;
   console.log("jeys>>>",Keypair.fromSecretKey(secret).publicKey.toBase58());

@@ -14,9 +14,9 @@ export default function MainPage() {
   const renderContent = () => {
     switch(blockchainSelected) {
         case "Solana":
-            return <SolanaSelected></SolanaSelected>;
+            return <SolanaSelected blockchainSelected={blockchainSelected}></SolanaSelected>;
         case "Ethereum":
-            return <EthereumSelected></EthereumSelected>;
+            return <SolanaSelected blockchainSelected={blockchainSelected}></SolanaSelected>;
         default:
             return <Home blockchainSelected={blockchainSelected} setBlockchainSelected={setBlockchainSelected}></Home>
     }

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Wallet } from "lucide-react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Background from "./components/Background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Background />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className="bg-zinc-50 text-black antialiased"
       >
         <ToastContainer
           position="bottom-right"

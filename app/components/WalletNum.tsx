@@ -26,7 +26,7 @@ export const WalletNum = ({
       {wallets.map((wallet, index) => (
         <div
           key={index}
-          className="rounded-xl border bg-white shadow-sm p-5 space-y-4"
+          className="rounded-xl border shadow-sm p-5 space-y-4"
         >
           {/* Header */}
           <div className="flex items-center justify-between">

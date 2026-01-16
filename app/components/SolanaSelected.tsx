@@ -3,7 +3,7 @@ import { SecretPhrase } from "./SecretPhrase"
 import { WalletNum } from "./WalletNum"
 import { convertMnemonicToSeedBuffer, createNewSeed } from "../utils/useful_functions";
 
-export const SolanaSelected = () => {
+export const SolanaSelected = ({blockchainSelected}:{blockchainSelected:string | null}) => {
         const [secretPhrase, setSecretPhrase] = useState<string[]>([]);
         const [wallets, setWallets] = useState<any[]>([]);
         const [walletCount, setWalletCount]=useState<number>(0);
@@ -14,7 +14,7 @@ export const SolanaSelected = () => {
         
         console.log("Creating wallet for index:", walletCount);
         const seed=convertMnemonicToSeedBuffer(secretPhrase);
-        const walletCred= createNewSeed(walletCount,seed);
+        const walletCred= createNewSeed(walletCount,seed,blockchainSelected);
         if(wallets.length===0){
             setWallets([walletCred]);
             setWalletCount(walletCount + 1);
@@ -39,7 +39,7 @@ console.log("Selected Secret Phrase in SolanaSelected:", wallets);
             secretPhrase={secretPhrase}
             ></SecretPhrase>
             <div className="px-20 pt-20 pb-10 font-mono flex items-center justify-between">
-                <h1 className="text-2xl">Solana Wallet</h1>
+                <h1 className="text-2xl">{blockchainSelected} Wallet</h1>
                 <div className="flex gap-3">
                 <button 
                 onClick={() => {
