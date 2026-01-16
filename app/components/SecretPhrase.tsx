@@ -3,23 +3,29 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { staticSecret } from '../sampleData/sampleData';
 import { generateMnemonic } from 'bip39';
 import { toast } from 'react-toastify';
+import { generateSecretKey } from '../utils/useful_functions';
 
-export const SecretPhrase = () => {
+export const SecretPhrase = ({ secretPhrase, setSecretPhrase }: { secretPhrase: string[], setSecretPhrase: React.Dispatch<React.SetStateAction<string[]>> }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [secretPhrase, setSecretPhrase] = useState<string[]>([]);
+    // const generateSecretKey = () => {
+    //     const secretPhrases = generateMnemonic(128);
+    //     setSecretPhrase(secretPhrases.split(" "));
+    //     return secretPhrases;
+    // }
 
-    const generateSecretKey = () => {
-        const secretPhrases = generateMnemonic(128);
-        setSecretPhrase(secretPhrases.split(" "));
-        return secretPhrases;
-    }
+    useEffect(() => {
+        const sKey= generateSecretKey()
+        setSecretPhrase(sKey);
+        console.log("sKey>>>",sKey);
+    }, [])
+
+
 
     const handleCopySecretKey = () => {
         if(secretPhrase.length > 0){
             navigator.clipboard.writeText(secretPhrase.join(" "));
             toast.success("Secret phrase copied to clipboard!");
         }
-
     }
 
     useEffect(() => {
