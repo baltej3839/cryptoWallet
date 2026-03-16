@@ -1,34 +1,39 @@
 "use client";
-import Home from './components/HomeElement';
-import { useState } from 'react';
-import { SolanaSelected } from './components/SolanaSelected';
-import { EthereumSelected } from './components/EthereumSelected';
 
+import Home from "./components/HomeElement";
+import { useState } from "react";
+import { SolanaSelected } from "./components/SolanaSelected";
+import { EthereumSelected } from "./components/EthereumSelected";
 
 export default function MainPage() {
   const [blockchainSelected, setBlockchainSelected] = useState<string | null>(null);
-  
 
-
-  console.log("Blockchain selected:", blockchainSelected);
   const renderContent = () => {
-    switch(blockchainSelected) {
-        case "Solana":
-            return <SolanaSelected blockchainSelected={blockchainSelected}></SolanaSelected>;
-        case "Ethereum":
-            return <SolanaSelected blockchainSelected={blockchainSelected}></SolanaSelected>;
-        default:
-            return <Home blockchainSelected={blockchainSelected} setBlockchainSelected={setBlockchainSelected}></Home>
+    switch (blockchainSelected) {
+      case "Solana":
+        return <SolanaSelected blockchainSelected={blockchainSelected} />;
+
+      case "Ethereum":
+        return <SolanaSelected blockchainSelected={blockchainSelected} />;
+
+      default:
+        return (
+          <Home
+            blockchainSelected={blockchainSelected}
+            setBlockchainSelected={setBlockchainSelected}
+          />
+        );
     }
-  }
+  };
 
   return (
-    <>
-  
-    {renderContent()}
+    <div className="min-h-screen w-full flex justify-center px-4 sm:px-6 lg:px-8">
+      
+      {/* Responsive content container */}
+      <div className="w-full max-w-6xl">
+        {renderContent()}
+      </div>
 
-    
-
-    </>
+    </div>
   );
 }
