@@ -4,6 +4,8 @@ import Home from "./components/HomeElement";
 import { useState } from "react";
 import { SolanaSelected } from "./components/SolanaSelected";
 import { EthereumSelected } from "./components/EthereumSelected";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MainPage() {
   const [blockchainSelected, setBlockchainSelected] = useState<string | null>(null);
@@ -18,10 +20,12 @@ export default function MainPage() {
 
       default:
         return (
+          <>
           <Home
             blockchainSelected={blockchainSelected}
             setBlockchainSelected={setBlockchainSelected}
           />
+          </>
         );
     }
   };

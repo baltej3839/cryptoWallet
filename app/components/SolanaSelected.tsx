@@ -14,6 +14,7 @@ export const SolanaSelected = ({ blockchainSelected }: { blockchainSelected: str
     const seed = convertMnemonicToSeedBuffer(secretPhrase);
     const walletCred = createNewSeed(walletCount, seed, blockchainSelected);
 
+
     if (wallets.length === 0) {
       setWallets([walletCred]);
       setWalletCount(walletCount + 1);
@@ -24,9 +25,13 @@ export const SolanaSelected = ({ blockchainSelected }: { blockchainSelected: str
     setWalletCount(walletCount + 1);
   };
 
+  
+
   const clearWallets = () => {
     setWallets((prev) => prev.slice(0, -1));
   };
+
+
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-10">
@@ -66,6 +71,8 @@ export const SolanaSelected = ({ blockchainSelected }: { blockchainSelected: str
       <WalletNum
         wallets={wallets}
         secretPhrase={secretPhrase}
+        // deleteWallet={deleteWallet}
+
       />
 
     </div>

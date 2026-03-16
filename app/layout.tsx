@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Wallet } from "lucide-react";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Background from "./components/Background";
+import { ToastContainer } from "react-toastify";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,11 +34,10 @@ export default function RootLayout({
         className="bg-zinc-50 text-black antialiased"
       >
         <ToastContainer
-          position="bottom-right"
-          autoClose={1000}
-          hideProgressBar={true}
-          closeOnClick
-          pauseOnHover
+          position="bottom-center"
+          autoClose={1500}
+          limit={2}
+          newestOnTop
         />
         <nav className="text-white bg-black font-mono">
         <div className="flex justify-between bg-mint-500">

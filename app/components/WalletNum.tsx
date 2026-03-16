@@ -1,12 +1,15 @@
 import { Eye, EyeOff, Copy, Trash } from "lucide-react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const WalletNum = ({
   secretPhrase,
   wallets,
+  // deleteWallet,
 }: {
   secretPhrase: string[];
   wallets: any[];
+  // deleteWallet:()=> void;
 }) => {
   const [visibleKeys, setVisibleKeys] = useState<Record<number, boolean>>({});
 
@@ -19,11 +22,25 @@ export const WalletNum = ({
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
+    toast.success("Copied to clipboard", {
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          theme: "colored",
+          style: {
+            fontSize: "14px",
+            borderRadius: "10px",
+            padding: "10px 14px",
+          },
+        });
   };
 
   return (
     <div className="px-4 sm:px-6 md:px-10 lg:px-16 space-y-6">
-      {wallets.map((wallet, index) => (
+      {wallets?.map((wallet, index) => (
         <div
           key={index}
           className="rounded-xl border shadow-sm p-4 sm:p-5 space-y-4 bg-white"
@@ -34,7 +51,11 @@ export const WalletNum = ({
               Wallet #{index + 1}
             </h2>
 
-            <Trash className="text-red-500 cursor-pointer hover:scale-105 transition" />
+            {/* {index!==0 && (
+            <Trash 
+            onClick={deleteWallet}
+            className="text-red-500 cursor-pointer hover:scale-105 transition" />
+            )} */}
           </div>
 
           {/* Public Key */}

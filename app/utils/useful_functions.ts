@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { Keypair } from "@solana/web3.js";
 import { generateMnemonic, mnemonicToSeedSync } from "bip39";
 import { derivePath } from "ed25519-hd-key";
@@ -27,3 +28,27 @@ export const createNewSeed = (i:number, seed:Buffer, blockchainSelected:string |
     }
 }
 
+
+
+export const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+
+    toast.success("Copied to clipboard", {
+      position: "bottom-center",
+      autoClose: 1500,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      theme: "colored",
+      style: {
+        fontSize: "14px",
+        borderRadius: "10px",
+        padding: "10px 14px",
+      },
+    });
+  } catch (err) {
+    toast.error("Failed to copy ❌");
+  }
+};
